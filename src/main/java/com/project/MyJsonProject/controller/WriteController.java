@@ -23,7 +23,7 @@ public class WriteController {
 	@Autowired
 	WriteService writeService;
 	
-	@PostMapping("/addauthor")  
+	@PostMapping("/authors")  
 	public ResponseEntity<MessageResponse> addAuthor(@RequestBody Author author)   
 	{  
 		try {
@@ -34,11 +34,11 @@ public class WriteController {
 		}
 	}  
 	
-	@PostMapping("/addpost")
-	public ResponseEntity<MessageResponse> addPost(Post post)
+	@PostMapping("/posts")
+	public ResponseEntity<MessageResponse> addPost(@RequestBody Post post)
 	{
 		try {
-			writeService.addAuthor(post);
+			writeService.addPost(post);
 			return ResponseEntity.ok(new MessageResponse("Post Added"));
 		} catch (ServiceResponseException e) {
 			return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
@@ -46,11 +46,11 @@ public class WriteController {
 	
 	}
 	
-	@DeleteMapping("/author/{authid}") 
-	public ResponseEntity<MessageResponse> deleteAuthor(@PathVariable("authid") int postid)   
+	@DeleteMapping("/authors/{authid}") 
+	public ResponseEntity<MessageResponse> deleteAuthor(@PathVariable("authid") int authid)   
 	{  
 		try {
-			writeService.deletePostbyId(postid);
+			writeService.deleteAuthorbyId(authid);
 			return ResponseEntity.ok(new MessageResponse("Author Deleted"));
 		} catch (ServiceResponseException e) {
 			return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
@@ -61,15 +61,15 @@ public class WriteController {
 	public ResponseEntity<MessageResponse> deletePost(@PathVariable("postid") int postid)   
 	{  
 		try {
-			writeService.deleteAuthorbyId(postid);
+			writeService.deletePostbyId(postid);
 			return ResponseEntity.ok(new MessageResponse("Post Deleted"));
 		} catch (ServiceResponseException e) {
 			return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
 		}
 	} 
 	
-	@PatchMapping("/updatepost/{postId}")
-	public ResponseEntity<MessageResponse> updatePost(@PathVariable int postId,
+	@PatchMapping("/posts/{postId}")
+	public ResponseEntity<MessageResponse> updatePost(@PathVariable("postid") int postId,
 	        @RequestBody Map<String,Object> map) {
 		try {
 			writeService.updatePost(postId, map);
@@ -79,8 +79,8 @@ public class WriteController {
 		}
 	}
 	
-	@PatchMapping("/updateauthor/{authorId}")
-	public ResponseEntity<MessageResponse> updateAuthor(@PathVariable int authId,
+	@PatchMapping("/authors/{authorId}")
+	public ResponseEntity<MessageResponse> updateAuthor(@PathVariable("authorId") int authId,
 	        @RequestBody Map<String,Object> map) {
 		try {
 			writeService.updateAuthor(authId, map);

@@ -28,7 +28,7 @@ public class WriteService {
     	  }
       }
       
-      public void addAuthor(Post post) throws ServiceResponseException 
+      public void addPost(Post post) throws ServiceResponseException 
       {
     	  if(!writeRepository.addEntity(post,"posts"))
     	  {

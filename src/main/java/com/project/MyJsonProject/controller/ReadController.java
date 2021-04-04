@@ -28,19 +28,19 @@ public class ReadController {
 	ReadService readService;
 	
 	
-	@GetMapping("/getAll")  
+	@GetMapping("/")  
 	public ResponseEntity<List<Object>> getAll()   
 	{
 	return ResponseEntity.ok(readService.getAll());
 	} 
 	
-	@GetMapping("/getauthors")  
+	@GetMapping("/authors")  
 	public ResponseEntity<List<Element>> getAllAuthors()   
 	{  
 	return ResponseEntity.ok(readService.getAllAuthors());
 	} 
 	
-	@GetMapping("/author/{authid}")  
+	@GetMapping("/authors/{authid}")  
 	public ResponseEntity getAuthor(@PathVariable("authid") int authid)   
 	{ 
 	try {
@@ -49,25 +49,25 @@ public class ReadController {
 		  return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
 	}
 	} 
-	@GetMapping("/posts")  
+	@GetMapping("/post")  
 	public ResponseEntity getFileteredPosts(@RequestParam("title") String title, @RequestParam("author") String author)
 	{ 
 		ElementParam param=new PostParam(title, author);
 		return ResponseEntity.of(readService.getPostsbyParam(param));
 	} 
-	@GetMapping("/authors")  
+	@GetMapping("/author")  
 	public ResponseEntity getFileteredAuthors(@RequestParam("firstName") String firstName, @RequestParam("lastName") String lastName)
 	{ 
 		ElementParam param=new AuthParam(firstName, lastName);
 		return ResponseEntity.of(readService.getAuthorsbyParam(param));
 	}
-	@GetMapping("/getposts")
+	@GetMapping("/posts")
 	public ResponseEntity<List<Element>> getAllPosts()
 	{
 	return ResponseEntity.ok(readService.getAllPosts());
 	}
 	
-	@GetMapping("/post/{postid}")  
+	@GetMapping("/posts/{postid}")  
 	public ResponseEntity getPost(@PathVariable("postid") int postid)   
 	{  
 	try {

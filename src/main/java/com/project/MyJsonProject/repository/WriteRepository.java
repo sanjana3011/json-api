@@ -1,9 +1,13 @@
 package com.project.MyJsonProject.repository;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.util.Map;
@@ -12,6 +16,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.core.io.support.ResourcePatternResolver;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 
@@ -24,11 +31,15 @@ import com.project.MyJsonProject.model.Post;
 public class WriteRepository extends JSONRepository  {
 	public void filewriter(JSONObject jsonObject) {
 		try {
-			 File file = ResourceUtils.getFile("classpath:store.json");
-			 Writer writer= new FileWriter(file);
-			 writer.write(jsonObject.toJSONString());
-	         writer.flush();
-	         writer.close();
+			String path=System.getProperty("user.home")+"/store.json";
+		    File customDir = new File(path);
+			 //OutputStream outputStream = new FileOutputStream(path); 
+			 //Writer outputStreamWriter = new OutputStreamWriter(outputStream);  
+			 //outputStreamWriter.write(jsonObject.toJSONString());
+			 //outputStreamWriter.close();
+		    FileWriter writer=new FileWriter(customDir);
+		    writer.write(jsonObject.toJSONString());
+		    writer.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

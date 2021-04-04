@@ -31,10 +31,11 @@ public class ReadControllerTests {
 		//m.put("title", "Post10");
 		//writeRepository.updateEntity(1, m, "posts");
 		//System.out.println(readRepository.findAllEntites("posts"));
-		//writeRepository.addEntity(author, "authors");
-		//writeRepository.addEntity(author);
-		AuthParam param=new AuthParam("Elon","Smuck");
-		System.out.println(readRepository.findElementbyParam(param, "authors"));
+		writeRepository.addEntity(author, "authors");
+		 //writeRepository.addEntity(author);
+		//AuthParam param=new AuthParam("Elon","Musk");
+		//System.out.println(readRepository.findElementbyParam(param, "authors"));
+		//System.out.println(System.getProperty("user.home"));
 	} 
 	/*
 	@GetMapping("/getauthors")  

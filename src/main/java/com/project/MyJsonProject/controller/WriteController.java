@@ -8,7 +8,10 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.MyJsonProject.error.MessageResponse;
@@ -29,6 +32,28 @@ public class WriteController {
 		try {
 			writeService.addAuthor(author);
 			return ResponseEntity.ok(new MessageResponse("Author Added"));
+		} catch (ServiceResponseException e) {
+			return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
+		}
+	}  
+	
+	@PutMapping("/author/{authId}")  
+	public ResponseEntity<MessageResponse> putAuthor(@PathVariable("authId") int authId, @RequestBody Author author)   
+	{
+		 try {
+			writeService.putAuthor(authId, author);
+			return ResponseEntity.ok(new MessageResponse("Author Added"));
+		} catch (ServiceResponseException e) {
+			return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
+		}
+	}  
+	
+	@PutMapping("/post/{postId}")  
+	public ResponseEntity<MessageResponse> putPost(@PathVariable("postId") int postId, @RequestBody Post post)   
+	{
+		 try {
+			writeService.putPost(postId, post);
+			return ResponseEntity.ok(new MessageResponse("Post Added"));
 		} catch (ServiceResponseException e) {
 			return ResponseEntity.status(e.getStatus()).body(new MessageResponse(e.getMessage()));
 		}
@@ -69,7 +94,7 @@ public class WriteController {
 	} 
 	
 	@PatchMapping("/posts/{postId}")
-	public ResponseEntity<MessageResponse> updatePost(@PathVariable("postid") int postId,
+	public ResponseEntity<MessageResponse> updatePost(@PathVariable("postId") int postId,
 	        @RequestBody Map<String,Object> map) {
 		try {
 			writeService.updatePost(postId, map);

@@ -123,6 +123,29 @@ public class WriteRepository extends JSONRepository  {
 	    }
 		return false;
 	}
+	
+	public boolean putEntity(int id, Element element, String type)
+	{     if(checkUniqueID(id,type))
+         {
+		JSONObject obj=getElementJsonArray();
+		JSONArray array=(JSONArray) obj.get(type);
+		for(int i=0;i<array.size();i++)
+		{
+			JSONObject key=(JSONObject) array.get(i);
+			Long ID=(Long) key.get("id");
+			if(ID.intValue()==id)
+			{
+				array.remove(i);
+				array.add(element.getJSONObject());
+				break;
+			}
+		}
+		obj.put(type, array);
+		filewriter(obj);
+		return true;
+    }
+	return false;
+	}
 
 	
 	

@@ -36,6 +36,27 @@ public class WriteService {
               .message("The given postID " + post.getID()+" already exists");
     	  }
       }
+      public void putAuthor(int ID, Author author) throws ServiceResponseException 
+      {
+    	  if(!writeRepository.putEntity(ID,author,"authors"))
+    	  {
+    		  writeRepository.addEntity(author, "authors");
+    		  throw ServiceResponseException.status(HttpStatus.ACCEPTED)
+              .message("The given authorID " + ID+" already exists. Updating Value");
+    	  }
+    	  writeRepository.putEntity(ID, author, "authors");
+      }
+      
+      public void putPost(int ID, Post post) throws ServiceResponseException
+      {
+    	  if(!writeRepository.putEntity(ID,post,"posts"))
+    	  {
+    		  writeRepository.addEntity(post, "posts");
+    		  throw ServiceResponseException.status(HttpStatus.ACCEPTED)
+              .message("The given authorID " + ID+" already exists. Updating Value");
+    	  }
+    	  writeRepository.putEntity(ID, post, "posts");
+      }
 	
       public void deletePostbyId(int Id) throws ServiceResponseException
       {

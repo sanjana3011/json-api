@@ -1,0 +1,179 @@
+{
+  "info": {
+    "_postman_id": "ab04a737-72ae-41c5-bbff-05699819ecf0",
+    "name": "JSON API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get All Entities",
+      "id": "44b634a2-9c46-4946-9626-cce95fb944fb",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://3.135.234.185:8080/"
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllAuthors",
+      "id": "2486e132-aacd-4fef-bd4f-7d475e0004f8",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://3.135.234.185:8080/authors"
+      },
+      "response": []
+    },
+    {
+      "name": "GetPostbyId",
+      "id": "1787c1b6-6f98-46ca-92ab-6db7f1b330a7",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://3.135.234.185:8080/posts/1"
+      },
+      "response": []
+    },
+    {
+      "name": "GetPostByTitleandAuthor",
+      "id": "a590629e-fc5c-4640-983d-bb46eef0b359",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://3.135.234.185:8080/post/?title=Post1&author=Elon",
+          "protocol": "http",
+          "host": [
+            "3",
+            "135",
+            "234",
+            "185"
+          ],
+          "port": "8080",
+          "path": [
+            "post",
+            ""
+          ],
+          "query": [
+            {
+              "key": "title",
+              "value": "Post1"
+            },
+            {
+              "key": "author",
+              "value": "Elon"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "gGetAuthorbyID",
+      "id": "7f3133b5-0479-492a-ac90-81c38ad79e9c",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://3.135.234.185:8080/authors/1"
+      },
+      "response": []
+    },
+    {
+      "name": "AddAuthor",
+      "id": "1d419bd4-9724-4d86-8a38-0d220b8868af",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"firstName\": \"Sunday\",\n            \"lastName\": \"First\",\n            \"post\": 0,\n            \"id\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://3.135.234.185:8080/authors/"
+      },
+      "response": []
+    },
+    {
+      "name": "Put Post",
+      "id": "33c7b696-b3c7-4767-9c52-4127f04535b0",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": " {\"title\": \"Post6\",\n        \"author\": \"Sanjana\",\n        \"views\": 1000,\n        \"reviews\": 30,\n        \"id\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://3.135.234.185:8080/post/5"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Author",
+      "id": "252f7d9d-5f20-40ce-ad6e-84fead24f767",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "http://3.135.234.185:8080/authors/5"
+      },
+      "response": []
+    },
+    {
+      "name": "Update ID Fail Test",
+      "id": "6312eeff-52ed-4586-b0e5-22882a22965f",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": " {\n        \"author\": \"Shreya\",\n        \"reviews\": 30,\n        \"id\": 5\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://3.135.234.185:8080/posts/1"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Author Last Name",
+      "id": "29c5df84-36d3-4dea-bfa7-2014dd61d64a",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"lastName\" : \"Smuck\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": "http://3.135.234.185:8080/authors/1"
+      },
+      "response": []
+    },
+    {
+      "name": "Check JSON Updates till now",
+      "id": "a827dcb1-21d7-4d4b-ba66-e76c62bde510",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://3.135.234.185:8080/"
+      },
+      "response": []
+    }
+  ]
+}

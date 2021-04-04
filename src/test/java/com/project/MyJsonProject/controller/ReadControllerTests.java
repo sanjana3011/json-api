@@ -26,13 +26,15 @@ public class ReadControllerTests {
 	{
 		ReadRepository readRepository=new ReadRepository();
 		WriteRepository writeRepository=new WriteRepository();
-		Author author=new Author(3,"sanjana", "patil", 20);
+		Author author=new Author(3,"sanjana", "none", 20);
 		//Map<String, Object> m=new HashMap<>();
 		//m.put("title", "Post10");
 		//writeRepository.updateEntity(1, m, "posts");
 		//System.out.println(readRepository.findAllEntites("posts"));
-		writeRepository.addEntity(author, "authors");
+		//writeRepository.addEntity(author, "authors");
 		 //writeRepository.addEntity(author);
+		writeRepository.putEntity(3, author, "authors");
+		System.out.println(readRepository.findAllEntites("authors"));
 		//AuthParam param=new AuthParam("Elon","Musk");
 		//System.out.println(readRepository.findElementbyParam(param, "authors"));
 		//System.out.println(System.getProperty("user.home"));
